@@ -3854,17 +3854,13 @@ CIMGUI_API void ImGuiInputTextState_SelectAll(ImGuiInputTextState* self)
 {
     return self->SelectAll();
 }
-CIMGUI_API void ImGuiInputTextState_ReloadUserBufAndSelectAll(ImGuiInputTextState* self)
+CIMGUI_API ImGuiPopupData* ImGuiPopupData_ImGuiPopupData(void)
 {
-    return self->ReloadUserBufAndSelectAll();
+    return IM_NEW(ImGuiPopupData)();
 }
-CIMGUI_API void ImGuiInputTextState_ReloadUserBufAndKeepSelection(ImGuiInputTextState* self)
+CIMGUI_API void ImGuiPopupData_destroy(ImGuiPopupData* self)
 {
-    return self->ReloadUserBufAndKeepSelection();
-}
-CIMGUI_API void ImGuiInputTextState_ReloadUserBufAndMoveToEnd(ImGuiInputTextState* self)
-{
-    return self->ReloadUserBufAndMoveToEnd();
+    IM_DELETE(self);
 }
 CIMGUI_API ImGuiNextWindowData* ImGuiNextWindowData_ImGuiNextWindowData(void)
 {
@@ -4945,10 +4941,6 @@ CIMGUI_API void igNavMoveRequestApplyResult()
 CIMGUI_API void igNavMoveRequestTryWrapping(ImGuiWindow* window,ImGuiNavMoveFlags move_flags)
 {
     return ImGui::NavMoveRequestTryWrapping(window,move_flags);
-}
-CIMGUI_API void igNavHighlightActivated(ImGuiID id)
-{
-    return ImGui::NavHighlightActivated(id);
 }
 CIMGUI_API void igNavClearPreferredPosForAxis(ImGuiAxis axis)
 {

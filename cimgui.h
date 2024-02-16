@@ -483,6 +483,11 @@ typedef enum {
     ImGuiDockNodeFlags_NoResize = 1 << 5,
     ImGuiDockNodeFlags_AutoHideTabBar = 1 << 6,
     ImGuiDockNodeFlags_NoUndocking = 1 << 7,
+
+
+
+
+
 }ImGuiDockNodeFlags_;
 typedef enum {
     ImGuiDragDropFlags_None = 0,
@@ -839,6 +844,7 @@ typedef enum {
     ImGuiStyleVar_SeparatorTextAlign,
     ImGuiStyleVar_SeparatorTextPadding,
     ImGuiStyleVar_DockingSeparatorSize,
+    ImGuiStyleVar_LayoutAlign,
     ImGuiStyleVar_COUNT
 }ImGuiStyleVar_;
 typedef enum {
@@ -1054,6 +1060,7 @@ struct ImGuiStyle
     float ScrollbarPadding;
     float GrabMinSize;
     float GrabRounding;
+    float LayoutAlign;
     float LogSliderDeadzone;
     float ImageRounding;
     float ImageBorderSize;
@@ -1109,8 +1116,7 @@ struct ImGuiKeyData
 typedef struct ImVector_ImWchar {int Size;int Capacity;ImWchar* Data;} ImVector_ImWchar;
 
 struct ImGuiIO
-{
-    ImGuiConfigFlags ConfigFlags;
+{    ImGuiConfigFlags ConfigFlags;
     ImGuiBackendFlags BackendFlags;
     ImVec2_c DisplaySize;
     ImVec2_c DisplayFramebufferScale;
@@ -1305,8 +1311,7 @@ struct ImGuiStoragePair
 typedef struct ImVector_ImGuiStoragePair {int Size;int Capacity;ImGuiStoragePair* Data;} ImVector_ImGuiStoragePair;
 
 struct ImGuiStorage
-{
-    ImVector_ImGuiStoragePair Data;
+{    ImVector_ImGuiStoragePair Data;
 };
 typedef enum {
     ImGuiListClipperFlags_None = 0,
@@ -2376,8 +2381,7 @@ struct ImGuiInputEvent
         ImGuiInputEventAppFocused AppFocused;
     };
     bool AddedByTestEngine;
-};
-typedef ImS16 ImGuiKeyRoutingIndex;
+};typedef ImS16 ImGuiKeyRoutingIndex;
 typedef struct ImGuiKeyRoutingData ImGuiKeyRoutingData;
 struct ImGuiKeyRoutingData
 {
@@ -2677,8 +2681,7 @@ struct ImGuiDockNode
     ImVec2_c SizeRef;
     ImGuiAxis SplitAxis;
     ImGuiWindowClass WindowClass;
-    ImU32 LastBgColor;
-    ImGuiWindow* HostWindow;
+    ImU32 LastBgColor;    ImGuiWindow* HostWindow;
     ImGuiWindow* VisibleWindow;
     ImGuiDockNode* CentralNode;
     ImGuiDockNode* OnlyNodeWithWindows;
@@ -3416,8 +3419,7 @@ struct ImGuiWindow
     ImRect_c ClipRect;
     ImRect_c ContentRegionRect;
     ImVec2ih HitTestHoleSize;
-    ImVec2ih HitTestHoleOffset;
-    int LastFrameActive;
+    ImVec2ih HitTestHoleOffset;    int LastFrameActive;
     int LastFrameJustFocused;
     float LastTimeActive;
     ImGuiStorage StateStorage;
@@ -3435,8 +3437,7 @@ struct ImGuiWindow
     ImGuiWindow* RootWindowDockTree;
     ImGuiWindow* RootWindowForTitleBarHighlight;
     ImGuiWindow* RootWindowForNav;
-    ImGuiWindow* ParentWindowForFocusRoute;
-    ImGuiWindow* NavLastChildNavWindow;
+    ImGuiWindow* ParentWindowForFocusRoute;    ImGuiWindow* NavLastChildNavWindow;
     ImGuiID NavLastIds[ImGuiNavLayer_COUNT];
     ImRect_c NavRectRel[ImGuiNavLayer_COUNT];
     ImVec2_c NavPreferredScoringPosRel[ImGuiNavLayer_COUNT];
@@ -4923,9 +4924,8 @@ CIMGUI_API int ImGuiInputTextState_GetSelectionStart(ImGuiInputTextState* self);
 CIMGUI_API int ImGuiInputTextState_GetSelectionEnd(ImGuiInputTextState* self);
 CIMGUI_API void ImGuiInputTextState_SetSelection(ImGuiInputTextState* self,int start,int end);
 CIMGUI_API void ImGuiInputTextState_SelectAll(ImGuiInputTextState* self);
-CIMGUI_API void ImGuiInputTextState_ReloadUserBufAndSelectAll(ImGuiInputTextState* self);
-CIMGUI_API void ImGuiInputTextState_ReloadUserBufAndKeepSelection(ImGuiInputTextState* self);
-CIMGUI_API void ImGuiInputTextState_ReloadUserBufAndMoveToEnd(ImGuiInputTextState* self);
+CIMGUI_API ImGuiPopupData* ImGuiPopupData_ImGuiPopupData(void);
+CIMGUI_API void ImGuiPopupData_destroy(ImGuiPopupData* self);
 CIMGUI_API ImGuiNextWindowData* ImGuiNextWindowData_ImGuiNextWindowData(void);
 CIMGUI_API void ImGuiNextWindowData_destroy(ImGuiNextWindowData* self);
 CIMGUI_API void ImGuiNextWindowData_ClearFlags(ImGuiNextWindowData* self);
@@ -5196,7 +5196,6 @@ CIMGUI_API void igNavMoveRequestResolveWithPastTreeNode(ImGuiNavItemData* result
 CIMGUI_API void igNavMoveRequestCancel(void);
 CIMGUI_API void igNavMoveRequestApplyResult(void);
 CIMGUI_API void igNavMoveRequestTryWrapping(ImGuiWindow* window,ImGuiNavMoveFlags move_flags);
-CIMGUI_API void igNavHighlightActivated(ImGuiID id);
 CIMGUI_API void igNavClearPreferredPosForAxis(ImGuiAxis axis);
 CIMGUI_API void igSetNavCursorVisibleAfterMove(void);
 CIMGUI_API void igNavUpdateCurrentWindowIsScrollPushableX(void);

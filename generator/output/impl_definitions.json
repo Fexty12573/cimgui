@@ -569,7 +569,7 @@
       "stname": ""
     }
   ],
-  "ImGui_ImplOpenGL2_Shutdown": [
+  "ImGui_ImplDX11_Shutdown": [
     {
       "args": "()",
       "argsT": [],
@@ -945,13 +945,13 @@
       "stname": ""
     }
   ],
-  "ImGui_ImplSDL2_ProcessEvent": [
+  "ImGui_ImplWin32_GetDpiScaleForHwnd": [
     {
-      "args": "(const SDL_Event* event)",
+      "args": "(void* hwnd)",
       "argsT": [
         {
-          "name": "event",
-          "type": "const SDL_Event*"
+          "name": "hwnd",
+          "type": "void*"
         }
       ],
       "argsoriginal": "(const SDL_Event* event)",
