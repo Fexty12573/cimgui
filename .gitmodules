@@ -1,4 +1,4 @@
 [submodule "imgui"]
 	path = imgui
 	url = https://github.com/thedmd/imgui.git
-	branch = origin/feature/docking-layout-external
+	branch = feature/docking-layout-external
