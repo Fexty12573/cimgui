@@ -22,7 +22,7 @@
 # ref: https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 POSITIONAL_ARGS=()
 
-TARGETS="internal noimstrv comments"
+TARGETS="internal noimstrv comments stacklayout"
 CFLAGS="win32 dx11 dx12"
 
 help() {

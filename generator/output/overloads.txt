@@ -96,6 +96,14 @@ ImVector_resize	2
 igBeginChild	2
 1	bool	igBeginChild_Str (const char*,const ImVec2,ImGuiChildFlags,ImGuiWindowFlags)
 2	bool	igBeginChild_ID (ImGuiID,const ImVec2,ImGuiChildFlags,ImGuiWindowFlags)
+igBeginHorizontal	3
+1	void	igBeginHorizontal_Str (const char*,const ImVec2,float)
+2	void	igBeginHorizontal_Ptr (const void*,const ImVec2,float)
+3	void	igBeginHorizontal_Int (int,const ImVec2,float)
+igBeginVertical	3
+1	void	igBeginVertical_Str (const char*,const ImVec2,float)
+2	void	igBeginVertical_Ptr (const void*,const ImVec2,float)
+3	void	igBeginVertical_Int (int,const ImVec2,float)
 igCheckboxFlags	4
 1	bool	igCheckboxFlags_IntPtr (const char*,int*,int)
 2	bool	igCheckboxFlags_UintPtr (const char*,unsigned int*,unsigned int)
@@ -287,4 +295,4 @@ igValue	4
 2	void	igValue_Int (const char*,int)
 3	void	igValue_Uint (const char*,unsigned int)
 4	void	igValue_Float (const char*,float,const char*)
-201 overloaded
+207 overloaded

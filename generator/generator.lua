@@ -9,6 +9,7 @@ local COMPILER = script_args[1]
 local INTERNAL_GENERATION = script_args[2]:match("internal") and true or false
 local FREETYPE_GENERATION = script_args[2]:match("freetype") and true or false
 local COMMENTS_GENERATION = script_args[2]:match("comments") and true or false
+local STACKLAYOUT_GENERATION = script_args[2]:match("stacklayout") and true or false
 local NOCHAR = script_args[2]:match("nochar") and true or false
 local NOIMSTRV = script_args[2]:match("noimstrv") and true or false
 local IMGUI_PATH = os.getenv"IMGUI_PATH" or "../imgui"
@@ -67,6 +68,7 @@ print("HAVE_COMPILER",HAVE_COMPILER)
 print("INTERNAL_GENERATION",INTERNAL_GENERATION)
 print("FREETYPE_GENERATION",FREETYPE_GENERATION)
 print("COMMENTS_GENERATION",COMMENTS_GENERATION)
+print("STACKLAYOUT_GENERATION",STACKLAYOUT_GENERATION)
 print("CPRE",CPRE)
 --------------------------------------------------------------------------
 --this table has the functions to be skipped in generation
@@ -151,7 +153,7 @@ local func_implementation = cpp2ffi.func_implementation
 local function get_defines(t)
     local compiler_cmd = COMPILER == "cl"
                          and COMPILER..[[ /TP /nologo /c /Fo"NUL" /DIMGUI_DISABLE_OBSOLETE_FUNCTIONS ]]..CFLAGS..[[ /I"]]..IMGUI_PATH..[[" print_defines.cpp]]
-                         or COMPILER..[[ -E -dM -DIMGUI_DISABLE_OBSOLETE_FUNCTIONS -DIMGUI_API="" -DIMGUI_IMPL_API="" ]]..IMGUI_PATH..[[/imgui.h]]..CFLAGS
+                         or COMPILER..[[ -E -dM -DIMGUI_DISABLE_OBSOLETE_FUNCTIONS -DIMGUI_API="" -DIMGUI_IMPL_API="" ]]..IMGUI_PATH..[[/imgui.h ]]..IMGUI_PATH..[[/imgui_stacklayout.h]]..CFLAGS
     print(compiler_cmd)
     local pipe,err = io.popen(compiler_cmd,"r")
     local defines = {}
@@ -276,7 +278,7 @@ end
 --------------------------------------------------------
 --get imgui.h version and IMGUI_HAS_DOCK--------------------------
 --defines for the cl compiler must be present in the print_defines.cpp file
-gdefines = get_defines{"IMGUI_VERSION","IMGUI_VERSION_NUM","FLT_MAX","FLT_MIN","IMGUI_HAS_DOCK","IMGUI_HAS_IMSTR"}
+gdefines = get_defines{"IMGUI_VERSION","IMGUI_VERSION_NUM","FLT_MAX","FLT_MIN","IMGUI_HAS_DOCK","IMGUI_HAS_IMSTR","IMGUI_HAS_STACK_LAYOUT"}
 
 if gdefines.IMGUI_HAS_DOCK then gdefines.IMGUI_HAS_DOCK = true end
 if gdefines.IMGUI_HAS_IMSTR then gdefines.IMGUI_HAS_IMSTR = true end
@@ -284,6 +286,12 @@ if gdefines.IMGUI_HAS_IMSTR then gdefines.IMGUI_HAS_IMSTR = true end
 cimgui_header = cimgui_header:gsub("XXX",gdefines.IMGUI_VERSION .. " "..(gdefines.IMGUI_VERSION_NUM or ""))
 if INTERNAL_GENERATION then
 	cimgui_header = cimgui_header..[[//with imgui_internal.h api
+]]
+end
+if STACKLAYOUT_GENERATION then
+    cimgui_header = cimgui_header..[[//with imgui_stacklayout.h api
+]]
+    cimgui_header = cimgui_header..[[//with imgui_stacklayout_internal.h api
 ]]
 end
 if FREETYPE_GENERATION then
@@ -301,7 +309,7 @@ print("NOCHAR",NOCHAR)
 print("NOIMSTRV",NOIMSTRV)
 print("IMGUI_HAS_DOCK",gdefines.IMGUI_HAS_DOCK)
 print("IMGUI_VERSION",gdefines.IMGUI_VERSION)
-
+print("IMGUI_HAS_STACK_LAYOUT",gdefines.IMGUI_HAS_STACK_LAYOUT)
 
 --funtion for parsing imgui headers
 local function parseImGuiHeader(header,names)
@@ -335,6 +343,15 @@ if INTERNAL_GENERATION then
 	]]
 	headersT[#headersT + 1] = [[imgui_internal]]
 	headersT[#headersT + 1] = [[imstb_textedit]]
+end
+if STACKLAYOUT_GENERATION then
+    headers = headers .. [[#include "]]..IMGUI_PATH..[[/imgui_stacklayout.h"
+    ]]
+    headers = headers .. [[#include "]]..IMGUI_PATH..[[/imgui_stacklayout_internal.h"
+    ]]
+
+    headersT[#headersT + 1] = [[imgui_stacklayout]]
+    headersT[#headersT + 1] = [[imgui_stacklayout_internal]]
 end
 if FREETYPE_GENERATION then
 	headers = headers .. [[
