@@ -43,3 +43,5 @@ CMakeFiles/
 # Test / Build
 bld/
 build/
+
+.vs/

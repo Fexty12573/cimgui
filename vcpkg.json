@@ -1,0 +1,10 @@
+{
+    "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+    "name": "cimgui",
+    "version": "1.0.0",
+    "description": "C bindings for Dear ImGui",
+    "dependencies": [
+        "freetype"
+    ],
+    "builtin-baseline": "13bde2ff13192e1b2fdd37bd9b475c7665ae6ae5"
+}
