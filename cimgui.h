@@ -3,6 +3,7 @@
 //with imgui_internal.h api
 //with imgui_stacklayout.h api
 //with imgui_stacklayout_internal.h api
+//with imgui_freetype.h api
 //docking branch
 #ifndef CIMGUI_INCLUDED
 #define CIMGUI_INCLUDED
@@ -3254,6 +3255,20 @@ struct ImFontBuilderIO
 {
     bool (*FontBuilder_Build)(ImFontAtlas* atlas);
 };
+struct ImFontAtlas;
+struct ImFontBuilderIO;
+typedef enum {
+    ImGuiFreeTypeBuilderFlags_NoHinting = 1 << 0,
+    ImGuiFreeTypeBuilderFlags_NoAutoHint = 1 << 1,
+    ImGuiFreeTypeBuilderFlags_ForceAutoHint = 1 << 2,
+    ImGuiFreeTypeBuilderFlags_LightHinting = 1 << 3,
+    ImGuiFreeTypeBuilderFlags_MonoHinting = 1 << 4,
+    ImGuiFreeTypeBuilderFlags_Bold = 1 << 5,
+    ImGuiFreeTypeBuilderFlags_Oblique = 1 << 6,
+    ImGuiFreeTypeBuilderFlags_Monochrome = 1 << 7,
+    ImGuiFreeTypeBuilderFlags_LoadColor = 1 << 8,
+    ImGuiFreeTypeBuilderFlags_Bitmap = 1 << 9
+}ImGuiFreeTypeBuilderFlags;
 #define IMGUI_HAS_DOCK       1
 
 #else
@@ -4703,7 +4718,6 @@ CIMGUI_API void igDebugNodeWindowsListByBeginStackParent(ImGuiWindow** windows,i
 CIMGUI_API void igDebugNodeViewport(ImGuiViewportP* viewport);
 CIMGUI_API void igDebugRenderKeyboardPreview(ImDrawList* draw_list);
 CIMGUI_API void igDebugRenderViewportThumbnail(ImDrawList* draw_list,ImGuiViewportP* viewport,const ImRect bb);
-CIMGUI_API const ImFontBuilderIO* igImFontAtlasGetBuilderForStbTruetype(void);
 CIMGUI_API void igImFontAtlasUpdateConfigDataPointers(ImFontAtlas* atlas);
 CIMGUI_API void igImFontAtlasBuildInit(ImFontAtlas* atlas);
 CIMGUI_API void igImFontAtlasBuildSetupFont(ImFontAtlas* atlas,ImFont* font,ImFontConfig* font_config,float ascent,float descent);
@@ -4713,6 +4727,8 @@ CIMGUI_API void igImFontAtlasBuildRender8bppRectFromString(ImFontAtlas* atlas,in
 CIMGUI_API void igImFontAtlasBuildRender32bppRectFromString(ImFontAtlas* atlas,int x,int y,int w,int h,const char* in_str,char in_marker_char,unsigned int in_marker_pixel_value);
 CIMGUI_API void igImFontAtlasBuildMultiplyCalcLookupTable(unsigned char out_table[256],float in_multiply_factor);
 CIMGUI_API void igImFontAtlasBuildMultiplyRectAlpha8(const unsigned char table[256],unsigned char* pixels,int x,int y,int w,int h,int stride);
+CIMGUI_API const ImFontBuilderIO* ImGuiFreeType_GetBuilderForFreeType(void);
+CIMGUI_API void ImGuiFreeType_SetAllocatorFunctions(void*(*alloc_func)(size_t sz,void* user_data),void(*free_func)(void* ptr,void* user_data),void* user_data);
 
 
 /////////////////////////hand written functions

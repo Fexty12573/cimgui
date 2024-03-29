@@ -3,7 +3,9 @@
 //with imgui_internal.h api
 //with imgui_stacklayout.h api
 //with imgui_stacklayout_internal.h api
+//with imgui_freetype.h api
 //docking branch
+#define IMGUI_ENABLE_FREETYPE
 #ifdef IMGUI_ENABLE_FREETYPE
 #ifndef CIMGUI_FREETYPE
 #error "IMGUI_FREETYPE should be defined for Freetype linking"
@@ -5572,10 +5574,6 @@ CIMGUI_API void igDebugRenderViewportThumbnail(ImDrawList* draw_list,ImGuiViewpo
 {
     return ImGui::DebugRenderViewportThumbnail(draw_list,viewport,bb);
 }
-CIMGUI_API const ImFontBuilderIO* igImFontAtlasGetBuilderForStbTruetype()
-{
-    return ImFontAtlasGetBuilderForStbTruetype();
-}
 CIMGUI_API void igImFontAtlasUpdateConfigDataPointers(ImFontAtlas* atlas)
 {
     return ImFontAtlasUpdateConfigDataPointers(atlas);
@@ -5611,6 +5609,14 @@ CIMGUI_API void igImFontAtlasBuildMultiplyCalcLookupTable(unsigned char out_tabl
 CIMGUI_API void igImFontAtlasBuildMultiplyRectAlpha8(const unsigned char table[256],unsigned char* pixels,int x,int y,int w,int h,int stride)
 {
     return ImFontAtlasBuildMultiplyRectAlpha8(table,pixels,x,y,w,h,stride);
+}
+CIMGUI_API const ImFontBuilderIO* ImGuiFreeType_GetBuilderForFreeType()
+{
+    return ImGuiFreeType::GetBuilderForFreeType();
+}
+CIMGUI_API void ImGuiFreeType_SetAllocatorFunctions(void*(*alloc_func)(size_t sz,void* user_data),void(*free_func)(void* ptr,void* user_data),void* user_data)
+{
+    return ImGuiFreeType::SetAllocatorFunctions(alloc_func,free_func,user_data);
 }
 
 
