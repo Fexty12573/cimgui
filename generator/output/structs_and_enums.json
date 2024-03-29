@@ -69,6 +69,9 @@
     "ImGuiFocusedFlags_": {
       "above": "// Flags for ImGui::IsWindowFocused()"
     },
+    "ImGuiFreeTypeBuilderFlags": {
+      "above": "// Hinting greatly impacts visuals (and glyph sizes).\n// - By default, hinting is enabled and the font's native hinter is preferred over the auto-hinter.\n// - When disabled, FreeType generates blurrier glyphs, more or less matches the stb_truetype.h\n// - The Default hinting mode usually looks good, but may distort glyphs in an unusual way.\n// - The Light hinting mode generates fuzzier glyphs but better matches Microsoft's rasterizer.\n// You can set those flags globaly in ImFontAtlas::FontBuilderFlags\n// You can set those flags on a per font basis in ImFontConfig::FontBuilderFlags"
+    },
     "ImGuiHoveredFlagsPrivate_": {
       "above": "// Extend ImGuiHoveredFlags_"
     },
