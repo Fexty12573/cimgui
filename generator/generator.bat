@@ -19,7 +19,7 @@ set PATH=%PATH%;"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tool
 :: arg[2] options as words in one string: internal for imgui_internal generation, freetype for freetype generation, comments for comments generation, nochar to skip char* function version, noimstrv to skip imstrv
 :: examples: "" "internal" "internal freetype comments"
 :: arg[3..n] name of implementations to generate and/or CFLAGS (e.g. -DIMGUI_USER_CONFIG or -DIMGUI_USE_WCHAR32)
-luajit ./generator.lua cl "internal noimstrv" win32 dx11 dx12 %*
+luajit ./generator.lua cl "internal noimstrv comments stacklayout freetype" win32 dx11 dx12 %*
 
 ::leave console open
 cmd /k
