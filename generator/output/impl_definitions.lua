@@ -1972,7 +1972,7 @@ t.ImGui_ImplSDL2_InitForVulkan["(SDL_Window*)"] = t.ImGui_ImplSDL2_InitForVulkan
 t.ImGui_ImplSDL2_NewFrame["()"] = t.ImGui_ImplSDL2_NewFrame[1]
 t.ImGui_ImplSDL2_ProcessEvent["(const SDL_Event*)"] = t.ImGui_ImplSDL2_ProcessEvent[1]
 t.ImGui_ImplSDL2_SetGamepadMode["(ImGui_ImplSDL2_GamepadMode,struct _SDL_GameController**,int)"] = t
-.ImGui_ImplSDL2_SetGamepadMode[1]
+    .ImGui_ImplSDL2_SetGamepadMode[1]
 t.ImGui_ImplSDL2_SetMouseCaptureMode["(ImGui_ImplSDL2_MouseCaptureMode)"] = t.ImGui_ImplSDL2_SetMouseCaptureMode[1]
 t.ImGui_ImplSDL2_Shutdown["()"] = t.ImGui_ImplSDL2_Shutdown[1]
 t.ImGui_ImplSDL3_InitForD3D["(SDL_Window*)"] = t.ImGui_ImplSDL3_InitForD3D[1]
@@ -1988,26 +1988,26 @@ t.ImGui_ImplSDL3_SetGamepadMode["(ImGui_ImplSDL3_GamepadMode,SDL_Gamepad**,int)"
 t.ImGui_ImplSDL3_SetMouseCaptureMode["(ImGui_ImplSDL3_MouseCaptureMode)"] = t.ImGui_ImplSDL3_SetMouseCaptureMode[1]
 t.ImGui_ImplSDL3_Shutdown["()"] = t.ImGui_ImplSDL3_Shutdown[1]
 t.ImGui_ImplVulkanH_CreateOrResizeWindow["(VkInstance,VkPhysicalDevice,VkDevice,ImGui_ImplVulkanH_Window*,uint32_t,const VkAllocationCallbacks*,int,int,uint32_t,VkImageUsageFlags)"] =
-t.ImGui_ImplVulkanH_CreateOrResizeWindow[1]
+    t.ImGui_ImplVulkanH_CreateOrResizeWindow[1]
 t.ImGui_ImplVulkanH_DestroyWindow["(VkInstance,VkDevice,ImGui_ImplVulkanH_Window*,const VkAllocationCallbacks*)"] = t
-.ImGui_ImplVulkanH_DestroyWindow[1]
+    .ImGui_ImplVulkanH_DestroyWindow[1]
 t.ImGui_ImplVulkanH_GetMinImageCountFromPresentMode["(VkPresentModeKHR)"] = t
-.ImGui_ImplVulkanH_GetMinImageCountFromPresentMode[1]
+    .ImGui_ImplVulkanH_GetMinImageCountFromPresentMode[1]
 t.ImGui_ImplVulkanH_GetWindowDataFromViewport["(ImGuiViewport*)"] = t.ImGui_ImplVulkanH_GetWindowDataFromViewport[1]
 t.ImGui_ImplVulkanH_SelectPhysicalDevice["(VkInstance)"] = t.ImGui_ImplVulkanH_SelectPhysicalDevice[1]
 t.ImGui_ImplVulkanH_SelectPresentMode["(VkPhysicalDevice,VkSurfaceKHR,const VkPresentModeKHR*,int)"] = t
-.ImGui_ImplVulkanH_SelectPresentMode[1]
+    .ImGui_ImplVulkanH_SelectPresentMode[1]
 t.ImGui_ImplVulkanH_SelectQueueFamilyIndex["(VkPhysicalDevice)"] = t.ImGui_ImplVulkanH_SelectQueueFamilyIndex[1]
 t.ImGui_ImplVulkanH_SelectSurfaceFormat["(VkPhysicalDevice,VkSurfaceKHR,const VkFormat*,int,VkColorSpaceKHR)"] = t
-.ImGui_ImplVulkanH_SelectSurfaceFormat[1]
+    .ImGui_ImplVulkanH_SelectSurfaceFormat[1]
 t.ImGui_ImplVulkanH_Window_ImGui_ImplVulkanH_Window["()"] = t.ImGui_ImplVulkanH_Window_ImGui_ImplVulkanH_Window[1]
 t.ImGui_ImplVulkanH_Window_destroy["(ImGui_ImplVulkanH_Window*)"] = t.ImGui_ImplVulkanH_Window_destroy[1]
 t.ImGui_ImplVulkan_AddTexture["(VkSampler,VkImageView,VkImageLayout)"] = t.ImGui_ImplVulkan_AddTexture[1]
 t.ImGui_ImplVulkan_CreateMainPipeline["(const ImGui_ImplVulkan_PipelineInfo*)"] = t.ImGui_ImplVulkan_CreateMainPipeline
-[1]
+    [1]
 t.ImGui_ImplVulkan_Init["(ImGui_ImplVulkan_InitInfo*)"] = t.ImGui_ImplVulkan_Init[1]
 t.ImGui_ImplVulkan_LoadFunctions["(uint32_t,PFN_vkVoidFunction(*loader_func)(const char* function_name,void*,void*)"] = t
-.ImGui_ImplVulkan_LoadFunctions[1]
+    .ImGui_ImplVulkan_LoadFunctions[1]
 t.ImGui_ImplVulkan_NewFrame["()"] = t.ImGui_ImplVulkan_NewFrame[1]
 t.ImGui_ImplVulkan_RemoveTexture["(VkDescriptorSet)"] = t.ImGui_ImplVulkan_RemoveTexture[1]
 t.ImGui_ImplVulkan_RenderDrawData["(ImDrawData*,VkCommandBuffer,VkPipeline)"] = t.ImGui_ImplVulkan_RenderDrawData[1]

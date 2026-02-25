@@ -2379,6 +2379,54 @@ CIMGUI_API void ImGuiSelectionExternalStorage_ApplyRequests(ImGuiSelectionExtern
 {
     return self->ApplyRequests(ms_io);
 }
+CIMGUI_API ImGuiSelectionBasicStorage* ImGuiSelectionBasicStorage_ImGuiSelectionBasicStorage(void)
+{
+    return IM_NEW(ImGuiSelectionBasicStorage)();
+}
+CIMGUI_API void ImGuiSelectionBasicStorage_destroy(ImGuiSelectionBasicStorage* self)
+{
+    IM_DELETE(self);
+}
+CIMGUI_API void ImGuiSelectionBasicStorage_ApplyRequests(ImGuiSelectionBasicStorage* self,ImGuiMultiSelectIO* ms_io)
+{
+    return self->ApplyRequests(ms_io);
+}
+CIMGUI_API bool ImGuiSelectionBasicStorage_Contains(ImGuiSelectionBasicStorage* self,ImGuiID id)
+{
+    return self->Contains(id);
+}
+CIMGUI_API void ImGuiSelectionBasicStorage_Clear(ImGuiSelectionBasicStorage* self)
+{
+    return self->Clear();
+}
+CIMGUI_API void ImGuiSelectionBasicStorage_Swap(ImGuiSelectionBasicStorage* self,ImGuiSelectionBasicStorage* r)
+{
+    return self->Swap(*r);
+}
+CIMGUI_API void ImGuiSelectionBasicStorage_SetItemSelected(ImGuiSelectionBasicStorage* self,ImGuiID id,bool selected)
+{
+    return self->SetItemSelected(id,selected);
+}
+CIMGUI_API bool ImGuiSelectionBasicStorage_GetNextSelectedItem(ImGuiSelectionBasicStorage* self,void** opaque_it,ImGuiID* out_id)
+{
+    return self->GetNextSelectedItem(opaque_it,out_id);
+}
+CIMGUI_API ImGuiID ImGuiSelectionBasicStorage_GetStorageIdFromIndex(ImGuiSelectionBasicStorage* self,int idx)
+{
+    return self->GetStorageIdFromIndex(idx);
+}
+CIMGUI_API ImGuiSelectionExternalStorage* ImGuiSelectionExternalStorage_ImGuiSelectionExternalStorage(void)
+{
+    return IM_NEW(ImGuiSelectionExternalStorage)();
+}
+CIMGUI_API void ImGuiSelectionExternalStorage_destroy(ImGuiSelectionExternalStorage* self)
+{
+    IM_DELETE(self);
+}
+CIMGUI_API void ImGuiSelectionExternalStorage_ApplyRequests(ImGuiSelectionExternalStorage* self,ImGuiMultiSelectIO* ms_io)
+{
+    return self->ApplyRequests(ms_io);
+}
 CIMGUI_API ImDrawCmd* ImDrawCmd_ImDrawCmd(void)
 {
     return IM_NEW(ImDrawCmd)();
@@ -3278,6 +3326,10 @@ CIMGUI_API void igImTextClassifierSetCharClassFromStr(ImU32* bits,unsigned int c
 {
     return ImTextClassifierSetCharClassFromStr(bits,codepoint_min,codepoint_end,char_class,s);
 }
+CIMGUI_API int igImTextCountLines(const char* in_text,const char* in_text_end)
+{
+    return ImTextCountLines(in_text,in_text_end);
+}
 CIMGUI_API ImFileHandle igImFileOpen(const char* filename,const char* mode)
 {
     return ImFileOpen(filename,mode);
@@ -3481,6 +3533,10 @@ CIMGUI_API float igImTriangleArea(const ImVec2_c a,const ImVec2_c b,const ImVec2
 CIMGUI_API bool igImTriangleIsClockwise(const ImVec2_c a,const ImVec2_c b,const ImVec2_c c)
 {
     return ImTriangleIsClockwise(ConvertToCPP_ImVec2(a),ConvertToCPP_ImVec2(b),ConvertToCPP_ImVec2(c));
+}
+CIMGUI_API bool igImTriangleIsClockwise(const ImVec2 a,const ImVec2 b,const ImVec2 c)
+{
+    return ImTriangleIsClockwise(a,b,c);
 }
 CIMGUI_API ImVec1* ImVec1_ImVec1_Nil(void)
 {
@@ -3854,13 +3910,17 @@ CIMGUI_API void ImGuiInputTextState_SelectAll(ImGuiInputTextState* self)
 {
     return self->SelectAll();
 }
-CIMGUI_API ImGuiPopupData* ImGuiPopupData_ImGuiPopupData(void)
+CIMGUI_API void ImGuiInputTextState_ReloadUserBufAndSelectAll(ImGuiInputTextState* self)
 {
-    return IM_NEW(ImGuiPopupData)();
+    return self->ReloadUserBufAndSelectAll();
 }
-CIMGUI_API void ImGuiPopupData_destroy(ImGuiPopupData* self)
+CIMGUI_API void ImGuiInputTextState_ReloadUserBufAndKeepSelection(ImGuiInputTextState* self)
 {
-    IM_DELETE(self);
+    return self->ReloadUserBufAndKeepSelection();
+}
+CIMGUI_API void ImGuiInputTextState_ReloadUserBufAndMoveToEnd(ImGuiInputTextState* self)
+{
+    return self->ReloadUserBufAndMoveToEnd();
 }
 CIMGUI_API ImGuiNextWindowData* ImGuiNextWindowData_ImGuiNextWindowData(void)
 {
@@ -4426,6 +4486,10 @@ CIMGUI_API ImVec2_c igWindowPosRelToAbs(ImGuiWindow* window,const ImVec2_c p)
 {
     return ConvertFromCPP_ImVec2(ImGui::WindowPosRelToAbs(window,ConvertToCPP_ImVec2(p)));
 }
+CIMGUI_API void igWindowPosAbsToRel(ImVec2 *pOut,ImGuiWindow* window,const ImVec2 p)
+{
+    *pOut = ImGui::WindowPosAbsToRel(window,p);
+}
 CIMGUI_API void igFocusWindow(ImGuiWindow* window,ImGuiFocusRequestFlags flags)
 {
     return ImGui::FocusWindow(window,flags);
@@ -4553,6 +4617,10 @@ CIMGUI_API void igUpdateHoveredWindowAndCaptureFlags(const ImVec2_c mouse_pos)
 CIMGUI_API void igFindHoveredWindowEx(const ImVec2_c pos,bool find_first_and_in_any_viewport,ImGuiWindow** out_hovered_window,ImGuiWindow** out_hovered_window_under_moving_window)
 {
     return ImGui::FindHoveredWindowEx(ConvertToCPP_ImVec2(pos),find_first_and_in_any_viewport,out_hovered_window,out_hovered_window_under_moving_window);
+}
+CIMGUI_API void igFindHoveredWindowEx(const ImVec2 pos,bool find_first_and_in_any_viewport,ImGuiWindow** out_hovered_window,ImGuiWindow** out_hovered_window_under_moving_window)
+{
+    return ImGui::FindHoveredWindowEx(pos,find_first_and_in_any_viewport,out_hovered_window,out_hovered_window_under_moving_window);
 }
 CIMGUI_API void igStartMouseMovingWindow(ImGuiWindow* window)
 {
@@ -4822,6 +4890,10 @@ CIMGUI_API bool igBeginPopupMenuEx(ImGuiID id,const char* label,ImGuiWindowFlags
 {
     return ImGui::BeginPopupMenuEx(id,label,extra_window_flags);
 }
+CIMGUI_API bool igBeginPopupEx(ImGuiID id,ImGuiWindowFlags extra_window_flags)
+{
+    return ImGui::BeginPopupEx(id,extra_window_flags);
+}
 CIMGUI_API void igOpenPopupEx(ImGuiID id,ImGuiPopupFlags popup_flags)
 {
     return ImGui::OpenPopupEx(id,popup_flags);
@@ -4869,6 +4941,14 @@ CIMGUI_API ImVec2_c igFindBestWindowPosForPopupEx(const ImVec2_c ref_pos,const I
 CIMGUI_API ImGuiMouseButton igGetMouseButtonFromPopupFlags(ImGuiPopupFlags flags)
 {
     return ImGui::GetMouseButtonFromPopupFlags(flags);
+}
+CIMGUI_API bool igBeginTooltipEx(ImGuiTooltipFlags tooltip_flags,ImGuiWindowFlags extra_window_flags)
+{
+    return ImGui::BeginTooltipEx(tooltip_flags,extra_window_flags);
+}
+CIMGUI_API bool igBeginTooltipHidden()
+{
+    return ImGui::BeginTooltipHidden();
 }
 CIMGUI_API bool igBeginTooltipEx(ImGuiTooltipFlags tooltip_flags,ImGuiWindowFlags extra_window_flags)
 {
@@ -4941,6 +5021,10 @@ CIMGUI_API void igNavMoveRequestApplyResult()
 CIMGUI_API void igNavMoveRequestTryWrapping(ImGuiWindow* window,ImGuiNavMoveFlags move_flags)
 {
     return ImGui::NavMoveRequestTryWrapping(window,move_flags);
+}
+CIMGUI_API void igNavHighlightActivated(ImGuiID id)
+{
+    return ImGui::NavHighlightActivated(id);
 }
 CIMGUI_API void igNavClearPreferredPosForAxis(ImGuiAxis axis)
 {
@@ -5919,9 +6003,9 @@ CIMGUI_API bool igSplitterBehavior(const ImRect_c bb,ImGuiID id,ImGuiAxis axis,f
 {
     return ImGui::SplitterBehavior(ConvertToCPP_ImRect(bb),id,axis,size1,size2,min_size1,min_size2,hover_extend,hover_visibility_delay,bg_col);
 }
-CIMGUI_API bool igTreeNodeBehavior(ImGuiID id,ImGuiTreeNodeFlags flags,const char* label,const char* label_end)
+CIMGUI_API bool igTreeNodeBehavior(ImGuiID id,ImGuiID storage_id,ImGuiTreeNodeFlags flags,const char* label,const char* label_end)
 {
-    return ImGui::TreeNodeBehavior(id,flags,label,label_end);
+    return ImGui::TreeNodeBehavior(id,storage_id,flags,label,label_end);
 }
 CIMGUI_API void igTreeNodeDrawLineToChildNode(const ImVec2_c target_pos)
 {

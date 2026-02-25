@@ -5512,7 +5512,7 @@
       "call_args": "(shared_font_atlas)",
       "call_args_old": "(shared_font_atlas)",
       "cimguiname": "ImGuiContext_ImGuiContext",
-      "comment": " // Different to ensure initial submission\n        PlatformImeViewport = 0;\n\n        DockNodeWindowMenuHandler =                                    ((void *)0)                                       ;\n\n        SettingsLoaded = false;\n        SettingsDirtyTimer = 0.0f;\n        HookIdNext = 0;\n\n        memset(LocalizationTable, 0, sizeof(LocalizationTable));\n\n        LogEnabled = false;\n        LogType = ImGuiLogType_None;\n        LogNextPrefix = LogNextSuffix =                                        ((void *)0)                                           ;\n        LogFile =                  ((void *)0)                     ;\n        LogLinePosY = 3.40282346638528859811704183484516925e+38F;\n        LogLineFirstItem = false;\n        LogDepthRef = 0;\n        LogDepthToExpand = LogDepthToExpandDefault = 2;\n\n        DebugLogFlags = ImGuiDebugLogFlags_OutputToTTY;\n        DebugLocateId = 0;\n        DebugLogAutoDisableFlags = ImGuiDebugLogFlags_None;\n        DebugLogAutoDisableFrames = 0;\n        DebugLocateFrames = 0;\n        DebugBeginReturnValueCullDepth = -1;\n        DebugItemPickerActive = false;\n        DebugItemPickerMouseButton = ImGuiMouseButton_Left;\n        DebugItemPickerBreakId = 0;\n        DebugFlashStyleColorTime = 0.0f;\n        DebugFlashStyleColorIdx = ImGuiCol_COUNT;\n        DebugHoveredDockNode =                               ((void *)0)                                  ;\n\n        // Same as DebugBreakClearData(). Those fields are scattered in their respective subsystem to stay in hot-data locations\n        DebugBreakInWindow = 0;\n        DebugBreakInTable = 0;\n        DebugBreakInLocateId = false;\n        DebugBreakKeyChord = ImGuiKey_Pause;\n        DebugBreakInShortcutRouting = ImGuiKey_None;\n\n        memset(FramerateSecPerFrame, 0, sizeof(FramerateSecPerFrame));\n        FramerateSecPerFrameIdx = FramerateSecPerFrameCount = 0;\n        FramerateSecPerFrameAccum = 0.0f;\n        WantCaptureMouseNextFrame = WantCaptureKeyboardNextFrame = WantTextInputNextFrame = -1;\n        memset(TempKeychordName, 0, sizeof(TempKeychordName));\n    }",
+      "comment": "\n\n        // All platforms use Ctrl+Tab but Ctrl<>Super are swapped on Mac...\n        // FIXME: Because this value is stored, it annoyingly interfere with toggling io.ConfigMacOSXBehaviors updating this..\n        ConfigNavWindowingKeyNext = IO.ConfigMacOSXBehaviors ? (ImGuiMod_Super | ImGuiKey_Tab) : (ImGuiMod_Ctrl | ImGuiKey_Tab);\n        ConfigNavWindowingKeyPrev = IO.ConfigMacOSXBehaviors ? (ImGuiMod_Super | ImGuiMod_Shift | ImGuiKey_Tab) : (ImGuiMod_Ctrl | ImGuiMod_Shift | ImGuiKey_Tab);\n        NavWindowingTarget = NavWindowingTargetAnim = NavWindowingListWindow = ((void *)0);\n        NavWindowingTimer = NavWindowingHighlightAlpha = 0.0f;\n        NavWindowingToggleLayer = false;\n        NavWindowingToggleKey = ImGuiKey_None;\n\n        DimBgRatio = 0.0f;\n\n        DragDropActive = DragDropWithinSource = DragDropWithinTarget = false;\n        DragDropSourceFlags = ImGuiDragDropFlags_None;\n        DragDropSourceFrameCount = -1;\n        DragDropMouseButton = -1;\n        DragDropTargetId = 0;\n        DragDropAcceptFlags = ImGuiDragDropFlags_None;\n        DragDropAcceptIdCurrRectSurface = 0.0f;\n        DragDropAcceptIdPrev = DragDropAcceptIdCurr = 0;\n        DragDropAcceptFrameCount = -1;\n        DragDropHoldJustPressedId = 0;\n        memset(DragDropPayloadBufLocal, 0, sizeof(DragDropPayloadBufLocal));\n\n        ClipperTempDataStacked = 0;\n\n        CurrentTable = ((void *)0);\n        TablesTempDataStacked = 0;\n        CurrentTabBar = ((void *)0);\n        CurrentMultiSelect = ((void *)0);\n        MultiSelectTempDataStacked = 0;\n\n        HoverItemDelayId = HoverItemDelayIdPreviousFrame = HoverItemUnlockedStationaryId = HoverWindowUnlockedStationaryId = 0;\n        HoverItemDelayTimer = HoverItemDelayClearTimer = 0.0f;\n\n        MouseCursor = ImGuiMouseCursor_Arrow;\n        MouseStationaryTimer = 0.0f;\n\n        TempInputId = 0;\n        memset(&DataTypeZeroValue, 0, sizeof(DataTypeZeroValue));\n        BeginMenuDepth = BeginComboDepth = 0;\n        ColorEditOptions = ImGuiColorEditFlags_DefaultOptions_;\n        ColorEditCurrentID = ColorEditSavedID = 0;\n        ColorEditSavedHue = ColorEditSavedSat = 0.0f;\n        ColorEditSavedColor = 0;\n        WindowResizeRelativeMode = false;\n        ScrollbarSeekMode = 0;\n        ScrollbarClickDeltaToGrabCenter = 0.0f;\n        SliderGrabClickOffset = 0.0f;\n        SliderCurrentAccum = 0.0f;\n        SliderCurrentAccumDirty = false;\n        DragCurrentAccumDirty = false;\n        DragCurrentAccum = 0.0f;\n        DragSpeedDefaultRatio = 1.0f / 100.0f;\n        DisabledAlphaBackup = 0.0f;\n        DisabledStackSize = 0;\n        LockMarkEdited = 0;\n        TooltipOverrideCount = 0;\n\n        PlatformImeData.InputPos = ImVec2(0.0f, 0.0f);\n        PlatformImeDataPrev.InputPos = ImVec2(-1.0f, -1.0f); // Different to ensure initial submission\n        PlatformImeViewport = 0;\n\n        DockNodeWindowMenuHandler = ((void *)0);\n\n        SettingsLoaded = false;\n        SettingsDirtyTimer = 0.0f;\n        HookIdNext = 0;\n\n        memset(LocalizationTable, 0, sizeof(LocalizationTable));\n\n        LogEnabled = false;\n        LogType = ImGuiLogType_None;\n        LogNextPrefix = LogNextSuffix = ((void *)0);\n        LogFile = ((void *)0);\n        LogLinePosY = 3.402823466e+38F;\n        LogLineFirstItem = false;\n        LogDepthRef = 0;\n        LogDepthToExpand = LogDepthToExpandDefault = 2;\n\n        DebugLogFlags = ImGuiDebugLogFlags_OutputToTTY;\n        DebugLocateId = 0;\n        DebugLogAutoDisableFlags = ImGuiDebugLogFlags_None;\n        DebugLogAutoDisableFrames = 0;\n        DebugLocateFrames = 0;\n        DebugBeginReturnValueCullDepth = -1;\n        DebugItemPickerActive = false;\n        DebugItemPickerMouseButton = ImGuiMouseButton_Left;\n        DebugItemPickerBreakId = 0;\n        DebugFlashStyleColorTime = 0.0f;\n        DebugFlashStyleColorIdx = ImGuiCol_COUNT;\n        DebugHoveredDockNode = ((void *)0);\n\n        // Same as DebugBreakClearData(). Those fields are scattered in their respective subsystem to stay in hot-data locations\n        DebugBreakInWindow = 0;\n        DebugBreakInTable = 0;\n        DebugBreakInLocateId = false;\n        DebugBreakKeyChord = ImGuiKey_Pause;\n        DebugBreakInShortcutRouting = ImGuiKey_None;\n\n        memset(FramerateSecPerFrame, 0, sizeof(FramerateSecPerFrame));\n        FramerateSecPerFrameIdx = FramerateSecPerFrameCount = 0;\n        FramerateSecPerFrameAccum = 0.0f;\n        WantCaptureMouseNextFrame = WantCaptureKeyboardNextFrame = WantTextInputNextFrame = -1;\n        memset(TempKeychordName, 0, sizeof(TempKeychordName));\n    }",
       "constructor": true,
       "defaults": {},
       "funcname": "ImGuiContext",
@@ -6478,7 +6478,7 @@
       "call_args": "()",
       "call_args_old": "()",
       "cimguiname": "ImGuiIO_ClearInputKeys",
-      "comment": "// Clear current keyboard/mouse/gamepad state + current frame text input buffer. Equivalent to releasing all keys/buttons.",
+      "comment": "// Clear current keyboard/gamepad state + current frame text input buffer. Equivalent to releasing all keys/buttons.",
       "defaults": {},
       "funcname": "ClearInputKeys",
       "location": "imgui:2635",
@@ -7198,6 +7198,69 @@
       "ov_cimguiname": "ImGuiInputTextState_OnKeyPressed",
       "ret": "void",
       "signature": "(int)",
+      "stname": "ImGuiInputTextState"
+    }
+  ],
+  "ImGuiInputTextState_ReloadUserBufAndKeepSelection": [
+    {
+      "args": "(ImGuiInputTextState* self)",
+      "argsT": [
+        {
+          "name": "self",
+          "type": "ImGuiInputTextState*"
+        }
+      ],
+      "argsoriginal": "()",
+      "call_args": "()",
+      "cimguiname": "ImGuiInputTextState_ReloadUserBufAndKeepSelection",
+      "defaults": {},
+      "funcname": "ReloadUserBufAndKeepSelection",
+      "location": "imgui_internal:1177",
+      "ov_cimguiname": "ImGuiInputTextState_ReloadUserBufAndKeepSelection",
+      "ret": "void",
+      "signature": "()",
+      "stname": "ImGuiInputTextState"
+    }
+  ],
+  "ImGuiInputTextState_ReloadUserBufAndMoveToEnd": [
+    {
+      "args": "(ImGuiInputTextState* self)",
+      "argsT": [
+        {
+          "name": "self",
+          "type": "ImGuiInputTextState*"
+        }
+      ],
+      "argsoriginal": "()",
+      "call_args": "()",
+      "cimguiname": "ImGuiInputTextState_ReloadUserBufAndMoveToEnd",
+      "defaults": {},
+      "funcname": "ReloadUserBufAndMoveToEnd",
+      "location": "imgui_internal:1178",
+      "ov_cimguiname": "ImGuiInputTextState_ReloadUserBufAndMoveToEnd",
+      "ret": "void",
+      "signature": "()",
+      "stname": "ImGuiInputTextState"
+    }
+  ],
+  "ImGuiInputTextState_ReloadUserBufAndSelectAll": [
+    {
+      "args": "(ImGuiInputTextState* self)",
+      "argsT": [
+        {
+          "name": "self",
+          "type": "ImGuiInputTextState*"
+        }
+      ],
+      "argsoriginal": "()",
+      "call_args": "()",
+      "cimguiname": "ImGuiInputTextState_ReloadUserBufAndSelectAll",
+      "defaults": {},
+      "funcname": "ReloadUserBufAndSelectAll",
+      "location": "imgui_internal:1176",
+      "ov_cimguiname": "ImGuiInputTextState_ReloadUserBufAndSelectAll",
+      "ret": "void",
+      "signature": "()",
       "stname": "ImGuiInputTextState"
     }
   ],
@@ -18979,6 +19042,7 @@
       "call_args": "(fmt,...)",
       "call_args_old": "(fmt,...)",
       "cimguiname": "igDebugLog",
+      "comment": "// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!",
       "defaults": {},
       "funcname": "DebugLog",
       "isvararg": "...)",
@@ -25733,8 +25797,8 @@
           "type": "const ImVec2"
         },
         {
-          "name": "mn",
-          "type": "const ImVec2"
+          "name": "ImVec2mn",
+          "type": "const"
         },
         {
           "name": "mx",
@@ -28779,7 +28843,7 @@
   ],
   "igImQsort": [
     {
-      "args": "(void* base,size_t count,size_t size_of_element,int(*compare_func)(void const*,void const*))",
+      "args": "(void* base,size_t count,size_t size_of_element,int(__cdecl*compare_func)(void const*,void const*))",
       "argsT": [
         {
           "name": "base",
@@ -28794,13 +28858,14 @@
           "type": "size_t"
         },
         {
+          "has_cdecl": "__cdecl",
           "name": "compare_func",
           "ret": "int",
           "signature": "(void const*,void const*)",
-          "type": "int(*)(void const*,void const*)"
+          "type": "int(__cdecl*)(void const*,void const*)"
         }
       ],
-      "argsoriginal": "(void* base,size_t count,size_t size_of_element,int(*compare_func)(void const*,void const*))",
+      "argsoriginal": "(void* base,size_t count,size_t size_of_element,int(__cdecl* compare_func)(void const*,void const*))",
       "call_args": "(base,count,size_of_element,compare_func)",
       "call_args_old": "(base,count,size_of_element,compare_func)",
       "cimguiname": "igImQsort",
@@ -28809,7 +28874,7 @@
       "location": "imgui_internal:383",
       "ov_cimguiname": "igImQsort",
       "ret": "void",
-      "signature": "(void*,size_t,size_t,int(*)(void const*,void const*))",
+      "signature": "(void*,size_t,size_t,int(__cdecl*)(void const*,void const*))",
       "stname": ""
     }
   ],
@@ -31492,7 +31557,7 @@
       "call_args": "()",
       "call_args_old": "()",
       "cimguiname": "igIsItemToggledSelection",
-      "comment": "// Was the last item selection toggled? (after Selectable(), TreeNode() etc. We only returns toggle _event_ in order to handle clipping correctly)",
+      "comment": "// Was the last item selection state toggled? Useful if you need the per-item information _before_ reaching EndMultiSelect(). We only returns toggle _event_ in order to handle clipping correctly.",
       "defaults": {},
       "funcname": "IsItemToggledSelection",
       "location": "imgui:784",
@@ -31806,6 +31871,28 @@
       "stname": ""
     }
   ],
+  "igIsModKey": [
+    {
+      "args": "(ImGuiKey key)",
+      "argsT": [
+        {
+          "name": "key",
+          "type": "ImGuiKey"
+        }
+      ],
+      "argsoriginal": "(ImGuiKey key)",
+      "call_args": "(key)",
+      "cimguiname": "igIsModKey",
+      "defaults": {},
+      "funcname": "IsModKey",
+      "location": "imgui_internal:3564",
+      "namespace": "ImGui",
+      "ov_cimguiname": "igIsModKey",
+      "ret": "bool",
+      "signature": "(ImGuiKey)",
+      "stname": ""
+    }
+  ],
   "igIsMouseClicked": [
     {
       "args": "(ImGuiMouseButton button,bool repeat)",
@@ -32011,7 +32098,7 @@
       "call_args": "(button,lock_threshold)",
       "call_args_old": "(button,lock_threshold)",
       "cimguiname": "igIsMouseDragging",
-      "comment": "// is mouse dragging? (if lock_threshold < -1.0f, uses io.MouseDraggingThreshold)",
+      "comment": "// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold < 0.0f)",
       "defaults": {
         "lock_threshold": "-1.0f"
       },
@@ -34951,6 +35038,7 @@
       "call_args": "(option,enabled)",
       "call_args_old": "(option,enabled)",
       "cimguiname": "igPushItemFlag",
+      "comment": "// modify specified shared item flag, e.g. PushItemFlag(ImGuiItemFlags_NoTabStop, true)",
       "defaults": {},
       "funcname": "PushItemFlag",
       "location": "imgui:544",
@@ -37325,7 +37413,7 @@
       "call_args": "(fmt,...)",
       "call_args_old": "(fmt,...)",
       "cimguiname": "igSetItemTooltip",
-      "comment": "// set a text-only tooltip if preceeding item was hovered. override any previous call to SetTooltip().",
+      "comment": "// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().",
       "defaults": {},
       "funcname": "SetItemTooltip",
       "isvararg": "...)",
@@ -41881,7 +41969,7 @@
       "call_args": "()",
       "call_args_old": "()",
       "cimguiname": "igTableGetHoveredColumn",
-      "comment": "// May use (TableGetColumnFlags() & ImGuiTableColumnFlags_IsHovered) instead. Return hovered column. return -1 when table is not hovered. return columns_count if the unused space at the right of visible columns is hovered.",
+      "comment": "// return hovered column. return -1 when table is not hovered. return columns_count if the unused space at the right of visible columns is hovered. Can also use (TableGetColumnFlags() & ImGuiTableColumnFlags_IsHovered) instead.",
       "defaults": {},
       "funcname": "TableGetHoveredColumn",
       "location": "imgui:942",
@@ -43554,10 +43642,14 @@
   ],
   "igTreeNodeBehavior": [
     {
-      "args": "(ImGuiID id,ImGuiTreeNodeFlags flags,const char* label,const char* label_end)",
+      "args": "(ImGuiID id,ImGuiID storage_id,ImGuiTreeNodeFlags flags,const char* label,const char* label_end)",
       "argsT": [
         {
           "name": "id",
+          "type": "ImGuiID"
+        },
+        {
+          "name": "storage_id",
           "type": "ImGuiID"
         },
         {
@@ -43585,7 +43677,7 @@
       "namespace": "ImGui",
       "ov_cimguiname": "igTreeNodeBehavior",
       "ret": "bool",
-      "signature": "(ImGuiID,ImGuiTreeNodeFlags,const char*,const char*)",
+      "signature": "(ImGuiID,ImGuiID,ImGuiTreeNodeFlags,const char*,const char*)",
       "stname": ""
     }
   ],
