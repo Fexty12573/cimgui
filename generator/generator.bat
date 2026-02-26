@@ -13,7 +13,7 @@
 :: set PATH=%PATH%;C:\anima;C:\mingws\i686-7.2.0-release-posix-dwarf-rt_v5-rev1\mingw32\bin;
 :: set PATH=%PATH%;C:\luaGL;C:\i686-7.2.0-release-posix-dwarf-rt_v5-rev1\mingw32\bin;
 :: set PATH=%PATH%;C:\luaGL\sources\luajit-master\luajit-master\bin\mingw32;C:\mingw32\bin;
-set PATH=%PATH%;"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\bin\Hostx64\x64";
+set PATH=%PATH%;"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\bin\Hostx64\x64";"C:\Users\Dev\AppData\Local\Programs\LuaJIT\bin\";
 ::process  files
 :: arg[1] compiler name gcc, clang or cl
 :: arg[2] options as words in one string: internal for imgui_internal generation, comments for comments generation, nochar to skip char* function version, noimstrv to skip imstrv
@@ -21,7 +21,7 @@ set PATH=%PATH%;"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tool
 :: examples: "" "internal" "internal comments"
 :: arg[3..n] name of implementations to generate and/or CFLAGS (e.g. -DIMGUI_USER_CONFIG) 
 ::-DIMGUI_USE_WCHAR32 should not be used (is discarded)
-luajit ./generator.lua cl "internal noimstrv" win32 dx11 dx12 sdl3 vulkan %*
+luajit ./generator.lua cl "internal noimstrv stacklayout comments" win32 dx11 dx12 %*
 
 ::leave console open
 cmd /k
