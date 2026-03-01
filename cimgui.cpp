@@ -2936,7 +2936,7 @@ CIMGUI_API ImGuiID igImHashStr(const char* data,size_t data_size,ImGuiID seed)
 {
     return ImHashStr(data,data_size,seed);
 }
-CIMGUI_API void igImQsort(void* base,size_t count,size_t size_of_element,int(__cdecl*compare_func)(void const*,void const*))
+CIMGUI_API void igImQsort(void* base,size_t count,size_t size_of_element,int(*compare_func)(void const*,void const*))
 {
     return ImQsort(base,count,size_of_element,compare_func);
 }
@@ -6260,6 +6260,23 @@ CIMGUI_API bool igImFontAtlasGetMouseCursorTexData(ImFontAtlas* atlas,ImGuiMouse
 {
     return ImFontAtlasGetMouseCursorTexData(atlas,cursor_type,out_offset,out_size,out_uv_border,out_uv_fill);
 }
+#ifdef IMGUI_ENABLE_FREETYPE
+CIMGUI_API const ImFontLoader* ImGuiFreeType_GetFontLoader()
+{
+    return ImGuiFreeType::GetFontLoader();
+}
+
+CIMGUI_API void ImGuiFreeType_SetAllocatorFunctions(void*(*alloc_func)(size_t sz,void* user_data),void(*free_func)(void* ptr,void* user_data),void* user_data)
+{
+    return ImGuiFreeType::SetAllocatorFunctions(alloc_func,free_func,user_data);
+}
+
+CIMGUI_API bool ImGuiFreeType_DebugEditFontLoaderFlags(ImGuiFreeTypeLoaderFlags* p_font_loader_flags)
+{
+    return ImGuiFreeType::DebugEditFontLoaderFlags(p_font_loader_flags);
+}
+
+#endif
 
 
 

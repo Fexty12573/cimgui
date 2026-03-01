@@ -1,26 +1,17 @@
 
-struct ImGui_ImplDX12_InitInfo
-{
-    ID3D12Device*               Device;
-    ID3D12CommandQueue*         CommandQueue;       
-    int                         NumFramesInFlight;
-    DXGI_FORMAT                 RTVFormat;          
-    DXGI_FORMAT                 DSVFormat;          
-    void*                       UserData;
-    ID3D12DescriptorHeap*       SrvDescriptorHeap;
-    void                        (*SrvDescriptorAllocFn)(ImGui_ImplDX12_InitInfo* info, D3D12_CPU_DESCRIPTOR_HANDLE* out_cpu_desc_handle, D3D12_GPU_DESCRIPTOR_HANDLE* out_gpu_desc_handle);
-    void                        (*SrvDescriptorFreeFn)(ImGui_ImplDX12_InitInfo* info, D3D12_CPU_DESCRIPTOR_HANDLE cpu_desc_handle, D3D12_GPU_DESCRIPTOR_HANDLE gpu_desc_handle);
-    ImGui_ImplDX12_InitInfo()   { memset((void*)this, 0, sizeof(*this)); }
-};
- bool     ImGui_ImplDX12_Init(ImGui_ImplDX12_InitInfo* info);
- void     ImGui_ImplDX12_Shutdown();
- void     ImGui_ImplDX12_NewFrame();
- void     ImGui_ImplDX12_RenderDrawData(ImDrawData* draw_data, ID3D12GraphicsCommandList* graphics_command_list);
- bool     ImGui_ImplDX12_CreateDeviceObjects();
- void     ImGui_ImplDX12_InvalidateDeviceObjects();
- void     ImGui_ImplDX12_UpdateTexture(ImTextureData* tex);
-struct ImGui_ImplDX12_RenderState
-{
-    ID3D12Device*               Device;
-    ID3D12GraphicsCommandList*  CommandList;
-};
+struct SDL_Window;
+struct SDL_Renderer;
+struct SDL_Gamepad;
+typedef union SDL_Event SDL_Event;
+ bool ImGui_ImplSDL3_InitForOpenGL(SDL_Window* window, void* sdl_gl_context);
+ bool ImGui_ImplSDL3_InitForVulkan(SDL_Window* window);
+ bool ImGui_ImplSDL3_InitForD3D(SDL_Window* window);
+ bool ImGui_ImplSDL3_InitForMetal(SDL_Window* window);
+ bool ImGui_ImplSDL3_InitForSDLRenderer(SDL_Window* window, SDL_Renderer* renderer);
+ bool ImGui_ImplSDL3_InitForSDLGPU(SDL_Window* window);
+ bool ImGui_ImplSDL3_InitForOther(SDL_Window* window);
+ void ImGui_ImplSDL3_Shutdown();
+ void ImGui_ImplSDL3_NewFrame();
+ bool ImGui_ImplSDL3_ProcessEvent(const SDL_Event* event);
+enum ImGui_ImplSDL3_GamepadMode { ImGui_ImplSDL3_GamepadMode_AutoFirst, ImGui_ImplSDL3_GamepadMode_AutoAll, ImGui_ImplSDL3_GamepadMode_Manual };
+ void ImGui_ImplSDL3_SetGamepadMode(ImGui_ImplSDL3_GamepadMode mode, SDL_Gamepad** manual_gamepads_array = nullptr, int manual_gamepads_count = -1);
